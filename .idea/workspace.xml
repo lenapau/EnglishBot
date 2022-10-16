@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/DocumentScenario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/IScenario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/TrainingScenario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/TranslateScenario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/EnglishLanguage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/ILanguage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/RussianLanguage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="Creating bot" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,8 +68,16 @@
       <workItem from="1665509723428" duration="842000" />
       <workItem from="1665672637585" duration="1371000" />
       <workItem from="1665740175506" duration="4975000" />
-      <workItem from="1665936058751" duration="2858000" />
+      <workItem from="1665936058751" duration="3165000" />
     </task>
+    <task id="LOCAL-00001" summary="Creating bot">
+      <created>1665941034794</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665941034794</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,5 +93,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creating bot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating bot" />
   </component>
 </project>

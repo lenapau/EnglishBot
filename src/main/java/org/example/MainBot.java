@@ -99,6 +99,8 @@ public class MainBot extends AbilityBot {
         return upd -> upd.getMessage().getText().equalsIgnoreCase(msg);
     }
 
+
+
     public ReplyFlow translateFlow() {
         ReplyFlow ruReplay = ReplyFlow.builder(db)
                 .action((baseAbilityBot, upd) ->
