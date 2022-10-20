@@ -99,8 +99,6 @@ public class MainBot extends AbilityBot {
         return upd -> upd.getMessage().getText().equalsIgnoreCase(msg);
     }
 
-
-
     public ReplyFlow translateFlow() {
         ReplyFlow ruReplay = ReplyFlow.builder(db)
                 .action((baseAbilityBot, upd) ->
@@ -156,8 +154,6 @@ public class MainBot extends AbilityBot {
                 .build();
 
     }
-
-    //132 строка спрятать транслятор внутри
 
     @Override
     public long creatorId() {
