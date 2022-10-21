@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="new changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/HttpEntityParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/scenario/translate/YandexTranslatorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +63,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
@@ -171,7 +168,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="first" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -179,7 +188,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating bot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating bot" />
+    <MESSAGE value="add translator test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add translator test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
