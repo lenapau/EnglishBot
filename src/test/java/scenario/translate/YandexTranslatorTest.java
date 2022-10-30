@@ -35,10 +35,10 @@ public class YandexTranslatorTest extends Mockito {
     public void HTTPPostCreateTest() {
         HttpPost httpPost = translator.createHttpPost(new JSONObject(), "abc");
         Assert.assertEquals(httpPost.getFirstHeader("Authorization").getValue(), "Api-Key abc");
-    }
+    }//поменять местами
 
     @Test
-    public void translateTest() throws IOException {
+    public void translationToEnglishTest() throws IOException {
         HttpClient httpClient = mock(HttpClient.class);
         HttpResponse httpResponse = mock(HttpResponse.class);
         HttpEntityParser httpEntityParser = mock(HttpEntityParser.class);
@@ -49,5 +49,6 @@ public class YandexTranslatorTest extends Mockito {
 
         YandexTranslator newTranslator = new YandexTranslator(httpClient, httpEntityParser);
         Assert.assertEquals(newTranslator.translate(new RussianLanguage(), new EnglishLanguage(), "кот"), "cat");
+        //ломается если вместо cat что-то другое пишу
     }
 }
