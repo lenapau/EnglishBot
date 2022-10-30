@@ -1,5 +1,5 @@
 package scenario;
-//кнопочки
+//кнопки
 public interface IScenario {
     String getName();
 }

@@ -12,10 +12,9 @@ import scenario.DocumentScenario;
 import scenario.IScenario;
 import scenario.TrainingScenario;
 import scenario.TranslateScenario;
-import scenario.translate.EnglishLanguage;
-import scenario.translate.RussianLanguage;
 
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,12 +26,14 @@ import static org.telegram.abilitybots.api.objects.Privacy.PUBLIC;
 import static org.telegram.abilitybots.api.util.AbilityUtils.getChatId;
 
 
-
 public class MainBot extends AbilityBot {
     private final TranslateScenario translateScenario = new TranslateScenario();
     private final DocumentScenario documentScenario = new DocumentScenario();
     private final TrainingScenario trainingScenario = new TrainingScenario();
     private final List<IScenario> scenarios = Arrays.asList(translateScenario, documentScenario, trainingScenario);
+
+    private final String error = "Не удалось перевести слово";
+
     protected MainBot(String botToken, String botUsername) {
         super(botToken, botUsername);
     }
@@ -73,7 +74,7 @@ public class MainBot extends AbilityBot {
         }
     }
 
-    private SendMessage constructMessageFrom(String chatId, String messageText, ArrayList<String> keyboardButtons) { //Создаем клавиатуру и кнопки(взять из старого)
+    private SendMessage constructMessageFrom(String chatId, String messageText, ArrayList<String> keyboardButtons) { //Создаем клавиатуру и кнопки
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText(messageText);
@@ -101,12 +102,15 @@ public class MainBot extends AbilityBot {
 
     public ReplyFlow translateFlow() {
         ReplyFlow ruReplay = ReplyFlow.builder(db)
-                .action((baseAbilityBot, upd) ->
-                        sendMessage(
-                                String.valueOf(getChatId(upd)),
-                                translateScenario.translateFromRussian(upd.getMessage().getText()),
-                                getScenarioButtons()
-                        )
+                .action((baseAbilityBot, upd) -> {
+                            String answer;
+                            try {
+                                answer = translateScenario.translateFromRussian(upd.getMessage().getText());
+                            } catch (IOException e) {
+                                answer = error;
+                            }
+                            sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
+                        }
                 )
                 .onlyIf(update -> !update.getMessage().isCommand() && !Objects.equals(update.getMessage().getText(), "\uD83C\uDDF7\uD83C\uDDFA"))
                 //Выполнить экшн если это не команда и не флаг
@@ -123,12 +127,15 @@ public class MainBot extends AbilityBot {
 
 
         ReplyFlow enReplay = ReplyFlow.builder(db)
-                .action((baseAbilityBot, upd) ->
-                        sendMessage(
-                                String.valueOf(getChatId(upd)),
-                                translateScenario.translateFromEnglish(upd.getMessage().getText()),
-                                getScenarioButtons()
-                        )
+                .action((baseAbilityBot, upd) -> {
+                            String answer;
+                            try {
+                                answer = translateScenario.translateFromEnglish(upd.getMessage().getText());
+                            } catch (IOException e) {
+                                answer = error;
+                            }
+                            sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
+                        }
                 )
                 .onlyIf(update -> !update.getMessage().isCommand() && !Objects.equals(update.getMessage().getText(), TranslateScenario.BRITISH_FLAG))
                 //Выполнить экшн если это не команда и не флаг
@@ -148,7 +155,7 @@ public class MainBot extends AbilityBot {
                         String.valueOf(getChatId(upd)), "Выберите язык исходного текста",
                         new ArrayList<>(Arrays.asList(TranslateScenario.RUSSIAN_FLAG, TranslateScenario.BRITISH_FLAG))
                 ))
-                .onlyIf(hasMessageWith("Перевод"+TranslateScenario.BRITISH_FLAG))
+                .onlyIf(hasMessageWith("Перевод" + TranslateScenario.BRITISH_FLAG))
                 .next(enReplayFlow)
                 .next(ruReplayFlow)
                 .build();
@@ -159,6 +166,5 @@ public class MainBot extends AbilityBot {
     public long creatorId() {
         return 0;
     }
-
 
 }
