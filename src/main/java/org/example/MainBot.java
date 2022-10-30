@@ -38,11 +38,17 @@ public class MainBot extends AbilityBot {
         super(botToken, botUsername);
     }
 
+
+    /**
+    В telegrambots есть подбиблиотека telegramAbilities от того же создателя.
+     Она нужна, чтобы вручную не писать автомат состояний.
+     public Ability задает, что отвечаем на start - action
+     */
+    @SuppressWarnings("unused")
     public Ability start() {
         return Ability
                 .builder()
                 .name("start")
-                .info("We're going on an adventure")
                 .locality(ALL)
                 .privacy(PUBLIC)
                 .action(context -> sendMessage(String.valueOf(context.chatId()), """
@@ -100,6 +106,13 @@ public class MainBot extends AbilityBot {
         return upd -> upd.getMessage().getText().equalsIgnoreCase(msg);
     }
 
+    /**
+     В telegrambots есть подбиблиотека telegramAbilities от того же создателя.
+     Она нужна, чтобы вручную не писать автомат состояний.
+     public ReplyFlow задает автомат состояний
+     Мы выполняем action если это не команда и не флаг(который высылается при выборе языка перевода)
+     */
+    @SuppressWarnings("unused")
     public ReplyFlow translateFlow() {
         ReplyFlow ruReplay = ReplyFlow.builder(db)
                 .action((baseAbilityBot, upd) -> {
@@ -113,7 +126,6 @@ public class MainBot extends AbilityBot {
                         }
                 )
                 .onlyIf(update -> !update.getMessage().isCommand() && !Objects.equals(update.getMessage().getText(), "\uD83C\uDDF7\uD83C\uDDFA"))
-                //Выполнить экшн если это не команда и не флаг
                 .build();
 
         ReplyFlow ruReplayFlow = ReplyFlow.builder(db)
@@ -166,5 +178,5 @@ public class MainBot extends AbilityBot {
     public long creatorId() {
         return 0;
     }
-
+    //Абстрактные классы предоставляют базовый функционал для наследников.А производные классы реализуют этот функционал
 }

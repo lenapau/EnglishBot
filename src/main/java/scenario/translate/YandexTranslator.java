@@ -20,7 +20,7 @@ public class YandexTranslator {
     public static final String API_KEY = System.getenv("API_KEY");
 
     public YandexTranslator() {
-        httpClient = HttpClientBuilder.create().build();;//клиент от джавы сделать
+        httpClient = HttpClientBuilder.create().build();;
         entityParser = new HttpEntityParser();
     }
 
