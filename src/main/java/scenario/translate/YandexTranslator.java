@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
@@ -15,10 +16,11 @@ import java.io.IOException;
 public class YandexTranslator {
     private HttpClient httpClient;
     private HttpEntityParser entityParser;
-    private final String API_KEY = "AQVNyZRW5aLLT_aKmRaKFiwsN6k8IFObheNKyBnP";
+
+    public static final String API_KEY = System.getenv("API_KEY");
 
     public YandexTranslator() {
-        httpClient = new DefaultHttpClient();//клиент от джавы сделать
+        httpClient = HttpClientBuilder.create().build();;
         entityParser = new HttpEntityParser();
     }
 
