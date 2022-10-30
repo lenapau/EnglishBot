@@ -10,9 +10,8 @@ import java.util.Properties;
 
 public class Main {
 
-    public static final String BOT_USERNAME = "myamazingbot";
-
-    public static final String BOT_TOKEN = "5726020600:AAFwa97sVyhBLADRF0Rk32tsjvp3zJBOq74";
+    public static final String BOT_USERNAME = System.getenv("BOT_USERNAME");
+    public static final String BOT_TOKEN = System.getenv("BOT_TOKEN");
 
     public static void main(String[] args) {
         Properties log4jProp = new Properties();

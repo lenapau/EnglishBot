@@ -15,7 +15,8 @@ import java.io.IOException;
 public class YandexTranslator {
     private HttpClient httpClient;
     private HttpEntityParser entityParser;
-    private final String API_KEY = "AQVNyZRW5aLLT_aKmRaKFiwsN6k8IFObheNKyBnP";
+
+    public static final String API_KEY = System.getenv("API_KEY");
 
     public YandexTranslator() {
         httpClient = new DefaultHttpClient();//клиент от джавы сделать
