@@ -167,7 +167,10 @@ public class MainBot extends AbilityBot {
                         String.valueOf(getChatId(upd)), "Выберите язык исходного текста",
                         new ArrayList<>(Arrays.asList(TranslateScenario.RUSSIAN_FLAG, TranslateScenario.BRITISH_FLAG))
                 ))
-                .onlyIf(hasMessageWith("Перевод" + TranslateScenario.BRITISH_FLAG))
+                .onlyIf(
+                        hasMessageWith("Перевод" + TranslateScenario.BRITISH_FLAG)
+                            .or(hasMessageWith("/translate"))
+                )
                 .next(enReplayFlow)
                 .next(ruReplayFlow)
                 .build();
