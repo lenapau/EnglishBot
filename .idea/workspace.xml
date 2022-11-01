@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="using httpClient Builder instead of deprecated httpClient">
+    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="made logger and javadoc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +73,9 @@
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Лена\IdeaProjects\echobot2\src\main\resources" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="scenario.translate" />
@@ -183,7 +183,9 @@
       <workItem from="1666425083711" duration="1851000" />
       <workItem from="1666599530203" duration="330000" />
       <workItem from="1666691717500" duration="606000" />
-      <workItem from="1667140652711" duration="5864000" />
+      <workItem from="1667140652711" duration="6096000" />
+      <workItem from="1667157273090" duration="284000" />
+      <workItem from="1667321639881" duration="1079000" />
     </task>
     <task id="LOCAL-00001" summary="Creating bot">
       <created>1665941034794</created>
@@ -220,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667146053920</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="made logger and javadoc">
+      <created>1667149022857</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667149022857</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +265,8 @@
     <MESSAGE value="throwing error instead of space" />
     <MESSAGE value="Setting up environment variables" />
     <MESSAGE value="using httpClient Builder instead of deprecated httpClient" />
-    <option name="LAST_COMMIT_MESSAGE" value="using httpClient Builder instead of deprecated httpClient" />
+    <MESSAGE value="made logger and javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="made logger and javadoc" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
