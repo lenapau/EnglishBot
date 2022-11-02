@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="made logger and javadoc">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" afterDir="false" />
+    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="editing YandexTranslator">
+      <change beforePath="$PROJECT_DIR$/src/test/java/scenario/translate/YandexTranslatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scenario/translate/YandexTranslatorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +184,8 @@
       <workItem from="1666691717500" duration="606000" />
       <workItem from="1667140652711" duration="6096000" />
       <workItem from="1667157273090" duration="284000" />
-      <workItem from="1667321639881" duration="1079000" />
+      <workItem from="1667321639881" duration="1300000" />
+      <workItem from="1667404295576" duration="3341000" />
     </task>
     <task id="LOCAL-00001" summary="Creating bot">
       <created>1665941034794</created>
@@ -229,7 +229,28 @@
       <option name="project" value="LOCAL" />
       <updated>1667149022857</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="creating three-dashes menu">
+      <created>1667322809433</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667322809433</updated>
+    </task>
+    <task id="LOCAL-00008" summary="adding execute method">
+      <created>1667406208519</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667406208519</updated>
+    </task>
+    <task id="LOCAL-00009" summary="editing YandexTranslator">
+      <created>1667407326233</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667407326233</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +287,10 @@
     <MESSAGE value="Setting up environment variables" />
     <MESSAGE value="using httpClient Builder instead of deprecated httpClient" />
     <MESSAGE value="made logger and javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="made logger and javadoc" />
+    <MESSAGE value="creating three-dashes menu" />
+    <MESSAGE value="adding execute method" />
+    <MESSAGE value="editing YandexTranslator" />
+    <option name="LAST_COMMIT_MESSAGE" value="editing YandexTranslator" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

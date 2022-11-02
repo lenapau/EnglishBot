@@ -31,10 +31,7 @@ public class YandexTranslator {
     }
 
     public String translate(ILanguage fromLanguage, ILanguage toLanguage, String text) throws IOException {
-        JSONObject payload = createJSON(fromLanguage, toLanguage, text);
-
-        HttpPost httpPost = createHttpPost(payload, API_KEY);
-
+        HttpPost httpPost = createRequest(fromLanguage, toLanguage, text);
         try  {
             HttpResponse response = httpClient.execute(httpPost);//в ответ складываем результат запроса от яндекс апи
             String result = entityParser.getResult(response.getEntity());//Получаем из ответа строку
@@ -63,5 +60,10 @@ public class YandexTranslator {
         httpPost.addHeader("Authorization", "Api-Key " + apiKey);
         httpPost.addHeader("Content-type", "application/json");
         return httpPost;
+    }
+
+    private HttpPost createRequest(ILanguage fromLanguage, ILanguage toLanguage, String text){
+        JSONObject payload = createJSON(fromLanguage, toLanguage, text);
+        return createHttpPost(payload, API_KEY);
     }
 }
