@@ -12,6 +12,10 @@ import scenario.DocumentScenario;
 import scenario.IScenario;
 import scenario.TrainingScenario;
 import scenario.TranslateScenario;
+import scenario.translate.EnglishLanguage;
+import scenario.translate.ILanguage;
+import scenario.translate.RussianLanguage;
+import scenario.translate.TranslateData;
 
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
@@ -118,8 +122,8 @@ public class MainBot extends AbilityBot {
                 .action((baseAbilityBot, upd) -> {
                             String answer;
                             try {
-                                answer = translateScenario.translateFromRussian(upd.getMessage().getText());
-                            } catch (IOException e) {
+                                answer = translateScenario.execute(new TranslateData(upd.getMessage().getText(), new RussianLanguage()));
+                            } catch (Exception e) {
                                 answer = error;
                             }
                             sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
@@ -142,8 +146,8 @@ public class MainBot extends AbilityBot {
                 .action((baseAbilityBot, upd) -> {
                             String answer;
                             try {
-                                answer = translateScenario.translateFromEnglish(upd.getMessage().getText());
-                            } catch (IOException e) {
+                                answer = translateScenario.execute(new TranslateData(upd.getMessage().getText(), new EnglishLanguage()));
+                            } catch (Exception e) {
                                 answer = error;
                             }
                             sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
