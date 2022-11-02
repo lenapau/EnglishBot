@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="creating three-dashes menu">
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/TranslateData.java" afterDir="false" />
+    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="adding execute method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/DocumentScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/DocumentScenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/IScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/IScenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/TrainingScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/TrainingScenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/TranslateScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/TranslateScenario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +186,7 @@
       <workItem from="1667140652711" duration="6096000" />
       <workItem from="1667157273090" duration="284000" />
       <workItem from="1667321639881" duration="1300000" />
-      <workItem from="1667404295576" duration="1817000" />
+      <workItem from="1667404295576" duration="2770000" />
     </task>
     <task id="LOCAL-00001" summary="Creating bot">
       <created>1665941034794</created>
@@ -242,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667322809433</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="adding execute method">
+      <created>1667406208519</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667406208519</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +282,8 @@
     <MESSAGE value="using httpClient Builder instead of deprecated httpClient" />
     <MESSAGE value="made logger and javadoc" />
     <MESSAGE value="creating three-dashes menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating three-dashes menu" />
+    <MESSAGE value="adding execute method" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding execute method" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
