@@ -172,7 +172,7 @@ public class MainBot extends AbilityBot {
                         new ArrayList<>(Arrays.asList(TranslateScenario.RUSSIAN_FLAG, TranslateScenario.BRITISH_FLAG))
                 ))
                 .onlyIf(
-                        hasMessageWith("Перевод" + TranslateScenario.BRITISH_FLAG)
+                        hasMessageWith(translateScenario.getName())
                             .or(hasMessageWith("/translate"))
                 )
                 .next(enReplayFlow)
