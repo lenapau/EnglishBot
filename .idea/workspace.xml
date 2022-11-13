@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="editing YandexTranslator">
-      <change beforePath="$PROJECT_DIR$/src/test/java/scenario/translate/YandexTranslatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scenario/translate/YandexTranslatorTest.java" afterDir="false" />
+    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="starting Training scenario">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +16,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="JUnit4 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -185,7 +186,9 @@
       <workItem from="1667140652711" duration="6096000" />
       <workItem from="1667157273090" duration="284000" />
       <workItem from="1667321639881" duration="1300000" />
-      <workItem from="1667404295576" duration="3341000" />
+      <workItem from="1667404295576" duration="4161000" />
+      <workItem from="1667754101183" duration="4554000" />
+      <workItem from="1668325224654" duration="571000" />
     </task>
     <task id="LOCAL-00001" summary="Creating bot">
       <created>1665941034794</created>
@@ -250,7 +253,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667407326233</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixed test">
+      <created>1667407880549</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1667407880549</updated>
+    </task>
+    <task id="LOCAL-00011" summary="editing files">
+      <created>1668325742743</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668325742743</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +307,9 @@
     <MESSAGE value="creating three-dashes menu" />
     <MESSAGE value="adding execute method" />
     <MESSAGE value="editing YandexTranslator" />
-    <option name="LAST_COMMIT_MESSAGE" value="editing YandexTranslator" />
+    <MESSAGE value="fixed test" />
+    <MESSAGE value="editing files" />
+    <option name="LAST_COMMIT_MESSAGE" value="editing files" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

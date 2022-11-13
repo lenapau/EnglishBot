@@ -35,7 +35,7 @@ public class YandexTranslatorTest extends Mockito {
     public void HTTPPostCreateTest() {
         HttpPost httpPost = translator.createHttpPost(new JSONObject(), "abc");
         Assert.assertEquals("Api-Key abc", httpPost.getFirstHeader("Authorization").getValue());
-    }//поменять местами
+    }
 
     @Test
     public void translationToEnglishTest() throws IOException {
