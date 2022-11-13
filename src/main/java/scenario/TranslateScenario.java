@@ -20,11 +20,11 @@ public class TranslateScenario implements IScenario<TranslateData, String>{
 
     @Override
     public String execute(TranslateData data) throws Exception {
-        if (data.language instanceof RussianLanguage) {
-            return translateFromRussian(data.word);
+        if (data.language() instanceof RussianLanguage) {
+            return translateFromRussian(data.word());
         }
-        if (data.language instanceof EnglishLanguage) {
-            return translateFromEnglish(data.word);
+        if (data.language() instanceof EnglishLanguage) {
+            return translateFromEnglish(data.word());
         }
         throw new IllegalStateException("unsupported language");
     }

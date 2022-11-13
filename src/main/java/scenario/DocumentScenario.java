@@ -1,7 +1,5 @@
 package scenario;
 
-import scenario.translate.TranslateData;
-
 public class DocumentScenario implements IScenario<String, String> {
     @Override
     public String getName() {
