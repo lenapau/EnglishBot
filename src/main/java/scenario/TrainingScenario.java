@@ -3,30 +3,42 @@ package scenario;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import scenario.training.OutputTrainingData;
 import scenario.training.TrainingState;
+import scenario.translate.EnglishLanguage;
+import scenario.translate.RussianLanguage;
+import scenario.translate.YandexTranslator;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.net.URL;
+import java.util.*;
 
-public class TrainingScenario implements IScenario<String, String> {
+public class TrainingScenario implements IScenario<String, OutputTrainingData> {
 
     private List<String> russianWords;
 
     private List<String> englishWords;
 
+    private YandexTranslator translator;
+
     private TrainingState state = TrainingState.START;
 
-    public TrainingScenario() {
+    String TRAINING_FLAG = "\uD83C\uDFC6";
+
+    private final Random random = new Random();
+
+    private String currentTargetWord = null;
+
+    public TrainingScenario(YandexTranslator translator) {
+        this.translator = translator;
         try {
-            russianWords = getListFromFile("russian_words.json");
+            russianWords = getListFromFile("data/russian_words.json");
         } catch (IOException | ParseException e) {
             russianWords = new ArrayList<>();
             System.out.println(e.getMessage());
         }
         try {
-            englishWords = getListFromFile("english_words.json");
+            englishWords = getListFromFile("data/english_words.json");
         } catch (IOException | ParseException e) {
             englishWords = new ArrayList<>();
             System.out.println(e.getMessage());
@@ -35,7 +47,21 @@ public class TrainingScenario implements IScenario<String, String> {
 
     private List<String> getListFromFile(String filename) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(filename));
+
+        StringBuilder out = new StringBuilder();
+        InputStream inputStream = TrainingScenario.class
+                .getClassLoader()
+                .getResourceAsStream(filename);
+
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+            }
+        }
+
+        JSONArray jsonArray = (JSONArray) parser.parse(out.toString());
         List<String> words = new ArrayList<>();
         for (Object o : jsonArray) {
             String word = (String) o;
@@ -46,11 +72,43 @@ public class TrainingScenario implements IScenario<String, String> {
 
     @Override
     public String getName() {
-        return "Тренировка\uD83C\uDFC6";
+        return "Тренировка" + TRAINING_FLAG;
     }
 
     @Override
-    public String execute(String s) throws Exception {
-        return "";
+    public OutputTrainingData execute(String word) throws Exception {
+        if (state == TrainingState.START) {
+            state = TrainingState.WAITING_FOR_ANSWER;
+            List<Integer> numbers = getRandomNumbers(englishWords.size() - 1, 3);
+            List<String> variants = Arrays.asList(
+                    englishWords.get(numbers.get(0)),
+                    englishWords.get(numbers.get(1)),
+                    englishWords.get(numbers.get(2))
+            );
+            String targetWord = variants.get(random.nextInt(variants.size() - 1));
+            currentTargetWord = targetWord;
+            String translatedTargetWord = translator.translate(new EnglishLanguage(), new RussianLanguage(), targetWord);
+            return new OutputTrainingData(variants, "Как перевести это слово - " + translatedTargetWord + "?");
+        }
+
+        state = TrainingState.START;
+        if (Objects.equals(currentTargetWord, word)) {
+            return new OutputTrainingData(new ArrayList<>(), "Правильно!");
+        }
+
+        return new OutputTrainingData(new ArrayList<>(), "Неправильно:( Верный ответ: " + currentTargetWord);
+    }
+
+    private List<Integer> getRandomNumbers(int listSize, int count) {
+        List<Integer> result = new ArrayList<Integer>();
+
+        while (result.size() != 3) {
+            Integer number = random.nextInt(listSize);
+            if (!result.contains(number)) {
+                result.add(number);
+            }
+        }
+
+        return result;
     }
 }
