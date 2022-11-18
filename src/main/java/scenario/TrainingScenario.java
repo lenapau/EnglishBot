@@ -16,8 +16,6 @@ import java.util.*;
 
 public class TrainingScenario implements IScenario<InputTrainingData, OutputTrainingData> {
 
-    private List<String> russianWords;
-
     private List<String> englishWords;
 
     private YandexTranslator translator;
@@ -31,12 +29,6 @@ public class TrainingScenario implements IScenario<InputTrainingData, OutputTrai
 
     public TrainingScenario(YandexTranslator translator) {
         this.translator = translator;
-        try {
-            russianWords = getListFromFile("data/russian_words.json");
-        } catch (IOException | ParseException e) {
-            russianWords = new ArrayList<>();
-            System.out.println(e.getMessage());
-        }
         try {
             englishWords = getListFromFile("data/english_words.json");
         } catch (IOException | ParseException e) {
