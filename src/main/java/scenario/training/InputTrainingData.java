@@ -1,3 +1,3 @@
 package scenario.training;
 
-record InputTrainingData(TrainingState state, String message) {}
+public record InputTrainingData(TrainingState state, String message) {}

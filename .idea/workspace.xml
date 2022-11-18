@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/scenario/ResourceLoader.java" afterDir="false" />
+    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="Training Scenario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainBot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/scenario/TrainingScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/TrainingScenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/TranslateScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/TranslateScenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/training/OutputTrainingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/training/OutputTrainingData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/TranslateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/TranslateData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/training/InputTrainingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/training/InputTrainingData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,30 +48,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "last_opened_file_path": "C:/Users/Лена/IdeaProjects/oopcourse2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Лена/IdeaProjects/oopcourse2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -199,6 +194,10 @@
       <workItem from="1667404295576" duration="4161000" />
       <workItem from="1667754101183" duration="4554000" />
       <workItem from="1668325224654" duration="571000" />
+      <workItem from="1668664370413" duration="3133000" />
+      <workItem from="1668675172368" duration="1277000" />
+      <workItem from="1668683730956" duration="1084000" />
+      <workItem from="1668750462082" duration="1844000" />
     </task>
     <task id="LOCAL-00001" summary="Creating bot">
       <created>1665941034794</created>
@@ -277,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668325742743</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Training Scenario">
+      <created>1668531260916</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668531260916</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,7 +325,48 @@
     <MESSAGE value="editing YandexTranslator" />
     <MESSAGE value="fixed test" />
     <MESSAGE value="editing files" />
-    <option name="LAST_COMMIT_MESSAGE" value="editing files" />
+    <MESSAGE value="starting Training scenario" />
+    <MESSAGE value="Training Scenario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Training Scenario" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
+          <line>191</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
+          <line>211</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
+          <line>192</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
+          <line>212</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
+          <line>214</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
+          <line>194</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
