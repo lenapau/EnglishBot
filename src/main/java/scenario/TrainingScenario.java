@@ -3,6 +3,7 @@ package scenario;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import scenario.training.InputTrainingData;
 import scenario.training.OutputTrainingData;
 import scenario.training.TrainingState;
 import scenario.translate.EnglishLanguage;
@@ -13,7 +14,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-public class TrainingScenario implements IScenario<String, OutputTrainingData> {
+public class TrainingScenario implements IScenario<InputTrainingData, OutputTrainingData> {
 
     private List<String> russianWords;
 
@@ -21,7 +22,6 @@ public class TrainingScenario implements IScenario<String, OutputTrainingData> {
 
     private YandexTranslator translator;
 
-    private TrainingState state = TrainingState.START;
 
     String TRAINING_FLAG = "\uD83C\uDFC6";
 
@@ -76,9 +76,8 @@ public class TrainingScenario implements IScenario<String, OutputTrainingData> {
     }
 
     @Override
-    public OutputTrainingData execute(String word) throws Exception {
-        if (state == TrainingState.START) {
-            state = TrainingState.WAITING_FOR_ANSWER;
+    public OutputTrainingData execute(InputTrainingData data) throws Exception {
+        if (data.state() == TrainingState.START) {
             List<Integer> numbers = getRandomNumbers(englishWords.size() - 1, 3);
             List<String> variants = Arrays.asList(
                     englishWords.get(numbers.get(0)),
@@ -91,8 +90,7 @@ public class TrainingScenario implements IScenario<String, OutputTrainingData> {
             return new OutputTrainingData(variants, "Как перевести это слово - " + translatedTargetWord + "?");
         }
 
-        state = TrainingState.START;
-        if (Objects.equals(currentTargetWord, word)) {
+        if (Objects.equals(currentTargetWord, data.message())) {
             return new OutputTrainingData(new ArrayList<>(), "Правильно!");
         }
 

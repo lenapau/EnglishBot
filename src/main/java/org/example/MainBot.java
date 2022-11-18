@@ -12,7 +12,9 @@ import scenario.DocumentScenario;
 import scenario.IScenario;
 import scenario.TrainingScenario;
 import scenario.TranslateScenario;
+import scenario.training.InputTrainingData;
 import scenario.training.OutputTrainingData;
+import scenario.training.TrainingState;
 import scenario.translate.EnglishLanguage;
 import scenario.translate.RussianLanguage;
 import scenario.translate.TranslateData;
@@ -38,7 +40,9 @@ public class MainBot extends AbilityBot {
     private final TrainingScenario trainingScenario = new TrainingScenario(translator);
     private final List<IScenario> scenarios = Arrays.asList(translateScenario, documentScenario, trainingScenario);
 
-    private final String error = "Не удалось перевести слово";
+    private final String TRANSLATE_ERROR = "Не удалось перевести слово";
+
+    private final String TRAINING_ERROR = "Ошибка тренировки";
 
     private static final String START_MESSAGE = """
             Привет!\s
@@ -129,7 +133,7 @@ public class MainBot extends AbilityBot {
                             try {
                                 answer = translateScenario.execute(new TranslateData(upd.getMessage().getText(), new RussianLanguage()));
                             } catch (Exception e) {
-                                answer = error;
+                                answer = TRANSLATE_ERROR;
                             }
                             sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
                         }
@@ -152,7 +156,7 @@ public class MainBot extends AbilityBot {
                             try {
                                 answer = translateScenario.execute(new TranslateData(upd.getMessage().getText(), new EnglishLanguage()));
                             } catch (Exception e) {
-                                answer = error;
+                                answer = TRANSLATE_ERROR;
                             }
                             sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
                         }
@@ -185,16 +189,21 @@ public class MainBot extends AbilityBot {
     @SuppressWarnings("unused")
     public ReplyFlow trainingFlow() {
         ReplyFlow checkFlow = ReplyFlow.builder(db)
-                .onlyIf(update -> !update.getMessage().isCommand())
+                .onlyIf(update -> !update.getMessage().isCommand() && !Objects.equals(update.getMessage().getText(), trainingScenario.getName()))
                 .action((baseAbilityBot, upd) -> {
                     try {
-                        OutputTrainingData data = trainingScenario.execute(upd.getMessage().getText());
+                        OutputTrainingData data = trainingScenario.execute(new InputTrainingData(TrainingState.WAITING_FOR_ANSWER, upd.getMessage().getText()));
                         sendMessage(
                                 String.valueOf(getChatId(upd)),
                                 data.message(),
                                 data.variants()
                         );
                     } catch (Exception e) {
+                        sendMessage(
+                                String.valueOf(getChatId(upd)),
+                                TRAINING_ERROR,
+                                new ArrayList<>()
+                        );
                     }
                 })
                 .build();
@@ -203,13 +212,18 @@ public class MainBot extends AbilityBot {
                 .onlyIf(hasMessageWith(trainingScenario.getName()).or(hasMessageWith("/training")))
                 .action((baseAbilityBot, upd) -> {
                     try {
-                        OutputTrainingData data = trainingScenario.execute(null);
+                        OutputTrainingData data = trainingScenario.execute(new InputTrainingData(TrainingState.START, null));
                         sendMessage(
                                 String.valueOf(getChatId(upd)),
                                 data.message(),
                                 data.variants()
                         );
                     } catch (Exception e) {
+                        sendMessage(
+                                String.valueOf(getChatId(upd)),
+                                TRAINING_ERROR,
+                                new ArrayList<>()
+                        );
                     }
                 })
                 .next(checkFlow)
