@@ -32,23 +32,13 @@ public class TrainingScenario implements Scenario<InputTrainingData, OutputTrain
 
 
     private List<String> getLinesFromFile() throws IOException {
-
         try  {
             Supplier<Stream<String>> lines = getLinesStream();
             int amount = (int) lines.get().count();
             List<Integer> randomNumbers = getRandomNumbers(amount-1);
-            String string1 = lines.get().skip(randomNumbers.get(0))
-                    .findFirst()
-                    .get()
-                    .trim()
-                    .replace(",", "")
-                    .replace("\"", "");
-            String string2 = lines.get().skip(randomNumbers.get(1)).findFirst().get().trim()
-                    .replace(",", "")
-                    .replace("\"", "");
-            String string3 = lines.get().skip(randomNumbers.get(2)).findFirst().get().trim()
-                    .replace(",", "")
-                    .replace("\"", "");
+            String string1 = getWordFromLine(0, randomNumbers, lines);
+            String string2 = getWordFromLine(1,randomNumbers, lines);
+            String string3 = getWordFromLine(2,randomNumbers, lines);
             return Arrays.asList(string1, string2, string3);
         } catch (IOException e) {
             System.out.println(e);
@@ -64,6 +54,15 @@ public class TrainingScenario implements Scenario<InputTrainingData, OutputTrain
                 throw new RuntimeException(e);
             }
         };
+    }
+
+    private String getWordFromLine(int index, List<Integer> list, Supplier<Stream<String>> lines) {
+        return lines.get().skip(list.get(index))
+                .findFirst()
+                .get()
+                .trim()
+                .replace(",", "")
+                .replace("\"", "");
     }
 
     @Override
