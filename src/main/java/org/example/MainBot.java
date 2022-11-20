@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import scenario.DocumentScenario;
-import scenario.IScenario;
+import scenario.Scenario;
 import scenario.TrainingScenario;
 import scenario.TranslateScenario;
 import scenario.training.InputTrainingData;
@@ -38,7 +38,7 @@ public class MainBot extends AbilityBot {
     private final TranslateScenario translateScenario = new TranslateScenario(translator);
     private final DocumentScenario documentScenario = new DocumentScenario();
     private final TrainingScenario trainingScenario = new TrainingScenario(translator);
-    private final List<IScenario> scenarios = Arrays.asList(translateScenario, documentScenario, trainingScenario);
+    private final List<Scenario> scenarios = Arrays.asList(translateScenario, documentScenario, trainingScenario);
 
     private final String TRANSLATE_ERROR = "Не удалось перевести слово";
 
@@ -75,7 +75,7 @@ public class MainBot extends AbilityBot {
 
     public ArrayList<String> getScenarioButtons() {
         ArrayList<String> list = new ArrayList<>();
-        for (IScenario scenario : scenarios) {
+        for (Scenario scenario : scenarios) {
             list.add(scenario.getName());
         }
         return list;

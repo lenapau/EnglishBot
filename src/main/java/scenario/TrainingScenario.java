@@ -11,19 +11,19 @@ import scenario.translate.RussianLanguage;
 import scenario.translate.YandexTranslator;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class TrainingScenario implements IScenario<InputTrainingData, OutputTrainingData> {
+public class TrainingScenario implements Scenario<InputTrainingData, OutputTrainingData> {
 
     private List<String> englishWords;
 
-    private YandexTranslator translator;
+    private final YandexTranslator translator;
 
 
     String TRAINING_FLAG = "\uD83C\uDFC6";
 
-    private final Random random = new Random();
+
 
     private String currentTargetWord = null;
 
@@ -70,12 +70,13 @@ public class TrainingScenario implements IScenario<InputTrainingData, OutputTrai
     @Override
     public OutputTrainingData execute(InputTrainingData data) throws Exception {
         if (data.state() == TrainingState.START) {
-            List<Integer> numbers = getRandomNumbers(englishWords.size() - 1, 3);
+            List<Integer> numbers = getRandomNumbers(englishWords.size() - 1);
             List<String> variants = Arrays.asList(
                     englishWords.get(numbers.get(0)),
                     englishWords.get(numbers.get(1)),
                     englishWords.get(numbers.get(2))
             );
+            var random = ThreadLocalRandom.current();
             String targetWord = variants.get(random.nextInt(variants.size() - 1));
             currentTargetWord = targetWord;
             String translatedTargetWord = translator.translate(new EnglishLanguage(), new RussianLanguage(), targetWord);
@@ -89,9 +90,9 @@ public class TrainingScenario implements IScenario<InputTrainingData, OutputTrai
         return new OutputTrainingData(new ArrayList<>(), "Неправильно:( Верный ответ: " + currentTargetWord);
     }
 
-    private List<Integer> getRandomNumbers(int listSize, int count) {
-        List<Integer> result = new ArrayList<Integer>();
-
+    private List<Integer> getRandomNumbers(int listSize) {
+        List<Integer> result = new ArrayList<>();
+        var random = ThreadLocalRandom.current();
         while (result.size() != 3) {
             Integer number = random.nextInt(listSize);
             if (!result.contains(number)) {

@@ -28,7 +28,7 @@ public class YandexTranslator {
         entityParser = parser;
     }
 
-    public String translate(ILanguage fromLanguage, ILanguage toLanguage, String text) throws IOException {
+    public String translate(Language fromLanguage, Language toLanguage, String text) throws IOException {
         HttpPost httpPost = createRequest(fromLanguage, toLanguage, text);
         try  {
             HttpResponse response = httpClient.execute(httpPost);//в ответ складываем результат запроса от яндекс апи
@@ -43,7 +43,7 @@ public class YandexTranslator {
     }
 
     @VisibleForTesting
-    protected JSONObject createJSON(ILanguage fromLanguage, ILanguage toLanguage, String text) {
+    protected JSONObject createJSON(Language fromLanguage, Language toLanguage, String text) {
         JSONObject payload = new JSONObject();
         payload.put("sourceLanguageCode", fromLanguage.getLocale());
         payload.put("targetLanguageCode", toLanguage.getLocale());
@@ -60,7 +60,7 @@ public class YandexTranslator {
         return httpPost;
     }
 
-    private HttpPost createRequest(ILanguage fromLanguage, ILanguage toLanguage, String text){
+    private HttpPost createRequest(Language fromLanguage, Language toLanguage, String text){
         JSONObject payload = createJSON(fromLanguage, toLanguage, text);
         return createHttpPost(payload, API_KEY);
     }

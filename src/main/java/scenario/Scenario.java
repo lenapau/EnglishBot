@@ -1,6 +1,6 @@
 package scenario;
 
-public interface IScenario<INPUT, OUTPUT> {
+public interface Scenario<INPUT, OUTPUT> {
     String getName();
 
     public OUTPUT execute(INPUT input) throws Exception;

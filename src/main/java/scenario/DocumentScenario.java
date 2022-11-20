@@ -1,6 +1,6 @@
 package scenario;
 
-public class DocumentScenario implements IScenario<String, String> {
+public class DocumentScenario implements Scenario<String, String> {
     @Override
     public String getName() {
         return "Документ\uD83D\uDCDD";
