@@ -14,7 +14,7 @@ public record TranslateScenario(YandexTranslator translator) implements Scenario
 
     @Override
     public String getName() {
-        return "Перевод" + BRITISH_FLAG;
+        return String.format("Перевод%s", BRITISH_FLAG);
     }
 
     @Override

@@ -78,7 +78,7 @@ public class TrainingScenario implements Scenario<InputTrainingData, OutputTrain
         if (Objects.equals(currentTargetWord, data.message())) {
             return new OutputTrainingData(new ArrayList<>(), "Правильно!");
         }
-        return new OutputTrainingData(new ArrayList<>(), "Неправильно:( Верный ответ: " + currentTargetWord);
+        return new OutputTrainingData(new ArrayList<>(), String.format("Неправильно:( Верный ответ: %s", currentTargetWord));
     }
 
     private OutputTrainingData handleStartState() throws Exception{

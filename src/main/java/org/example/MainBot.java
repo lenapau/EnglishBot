@@ -127,7 +127,8 @@ public class MainBot extends AbilityBot {
     @SuppressWarnings("unused")
     public ReplyFlow translateFlow() {
         ReplyFlow ruReplay = ReplyFlow.builder(db)
-                .onlyIf(update -> !update.getMessage().isCommand() && !Objects.equals(update.getMessage().getText(), "\uD83C\uDDF7\uD83C\uDDFA"))
+                .onlyIf(update -> !update.getMessage().isCommand()
+                        && !Objects.equals(update.getMessage().getText(), "\uD83C\uDDF7\uD83C\uDDFA"))
                 .action((baseAbilityBot, upd) -> {
                             String answer;
                             try {
@@ -161,7 +162,8 @@ public class MainBot extends AbilityBot {
                             sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
                         }
                 )
-                .onlyIf(update -> !update.getMessage().isCommand() && !Objects.equals(update.getMessage().getText(), TranslateScenario.BRITISH_FLAG))
+                .onlyIf(update -> !update.getMessage().isCommand()
+                        && !Objects.equals(update.getMessage().getText(), TranslateScenario.BRITISH_FLAG))
                 //Выполнить экшн если это не команда и не флаг
                 .build();
 
@@ -189,7 +191,8 @@ public class MainBot extends AbilityBot {
     @SuppressWarnings("unused")
     public ReplyFlow trainingFlow() {
         ReplyFlow checkFlow = ReplyFlow.builder(db)
-                .onlyIf(update -> !update.getMessage().isCommand() && !Objects.equals(update.getMessage().getText(), trainingScenario.getName()))
+                .onlyIf(update -> !update.getMessage().isCommand()
+                        && !Objects.equals(update.getMessage().getText(), trainingScenario.getName()))
                 .action((baseAbilityBot, upd) -> {
                     try {
                         OutputTrainingData data = trainingScenario.execute(new InputTrainingData(TrainingState.WAITING_FOR_ANSWER, upd.getMessage().getText()));
