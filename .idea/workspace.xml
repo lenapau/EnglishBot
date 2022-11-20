@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="fixing Training Scenario">
+    <list default="true" id="28ba405a-e090-4b6a-9232-9387aa1da91e" name="Changes" comment="adding data Training Scenario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/ResourceLoader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/scenario/TrainingScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/TrainingScenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/english_words.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/english_words.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/russian_words.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/training/InputTrainingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/training/InputTrainingData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/training/OutputTrainingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/training/OutputTrainingData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/training/TrainingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/training/TrainingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/EnglishLanguage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/EnglishLanguage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/HttpEntityParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/HttpEntityParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/ILanguage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/Language.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/RussianLanguage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/RussianLanguage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/TranslateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/TranslateData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scenario/translate/YandexTranslator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +58,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
@@ -199,7 +208,9 @@
       <workItem from="1668683730956" duration="1084000" />
       <workItem from="1668750462082" duration="1930000" />
       <workItem from="1668752924112" duration="1183000" />
-      <workItem from="1668758171151" duration="1231000" />
+      <workItem from="1668758171151" duration="1636000" />
+      <workItem from="1668763998220" duration="2959000" />
+      <workItem from="1668952259580" duration="937000" />
     </task>
     <task id="LOCAL-00001" summary="Creating bot">
       <created>1665941034794</created>
@@ -292,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668752368686</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="adding data Training Scenario">
+      <created>1668760372098</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1668760372098</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,46 +355,8 @@
     <MESSAGE value="starting Training scenario" />
     <MESSAGE value="Training Scenario" />
     <MESSAGE value="fixing Training Scenario" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing Training Scenario" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
-          <line>191</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
-          <line>211</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
-          <line>192</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
-          <line>212</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
-          <line>214</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/MainBot.java</url>
-          <line>194</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="adding data Training Scenario" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding data Training Scenario" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

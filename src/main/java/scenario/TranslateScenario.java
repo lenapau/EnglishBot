@@ -7,7 +7,7 @@ import scenario.translate.YandexTranslator;
 
 import java.io.IOException;
 
-public record TranslateScenario(YandexTranslator translator) implements IScenario<TranslateData, String>{
+public record TranslateScenario(YandexTranslator translator) implements Scenario<TranslateData, String> {
 
     public static final String RUSSIAN_FLAG = "\uD83C\uDDF7\uD83C\uDDFA";
     public static final String BRITISH_FLAG = "\uD83C\uDDEC\uD83C\uDDE7";

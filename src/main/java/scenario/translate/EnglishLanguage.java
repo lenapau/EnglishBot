@@ -1,6 +1,6 @@
 package scenario.translate;
 
-public class EnglishLanguage implements ILanguage{
+public class EnglishLanguage implements Language {
 
     /**
      Сущность, предоставляющая язык для Translator
