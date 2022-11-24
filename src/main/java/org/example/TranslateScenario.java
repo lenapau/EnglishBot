@@ -1,5 +1,6 @@
-package scenario;
+package org.example;
 
+import org.example.Scenario;
 import scenario.translate.EnglishLanguage;
 import scenario.translate.RussianLanguage;
 import scenario.translate.TranslateData;
