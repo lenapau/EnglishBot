@@ -8,10 +8,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import scenario.DocumentScenario;
-import scenario.Scenario;
-import scenario.TrainingScenario;
-import scenario.TranslateScenario;
 import scenario.training.InputTrainingData;
 import scenario.training.OutputTrainingData;
 import scenario.training.TrainingState;
@@ -208,6 +204,11 @@ public class MainBot extends AbilityBot {
                                 new ArrayList<>()
                         );
                     }
+                    //try {
+                    //    silent.send(String.valueOf(trainingScenario.execute(new InputTrainingData(TrainingState.START, null))), getChatId(upd));
+                    //} catch (Exception e) {
+                    //    throw new RuntimeException(e);
+                    //}
                 })
                 .build();
 

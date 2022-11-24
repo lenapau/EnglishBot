@@ -1,5 +1,6 @@
-package scenario;
+package org.example;
 
+import org.example.Scenario;
 import scenario.training.InputTrainingData;
 import scenario.training.OutputTrainingData;
 import scenario.training.TrainingState;

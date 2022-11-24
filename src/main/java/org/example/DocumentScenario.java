@@ -1,4 +1,4 @@
-package scenario;
+package org.example;
 
 public class DocumentScenario implements Scenario<String, String> {
     @Override
