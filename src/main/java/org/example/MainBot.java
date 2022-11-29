@@ -3,11 +3,16 @@ package org.example;
 import org.telegram.abilitybots.api.bot.AbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
 import org.telegram.abilitybots.api.objects.ReplyFlow;
+import org.telegram.telegrambots.meta.api.methods.GetFile;
+import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Document;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import scenario.document.DocumentData;
 import scenario.training.InputTrainingData;
 import scenario.training.OutputTrainingData;
 import scenario.training.TrainingState;
@@ -17,6 +22,7 @@ import scenario.translate.TranslateData;
 import scenario.translate.YandexTranslator;
 
 import javax.validation.constraints.NotNull;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,13 +38,16 @@ public class MainBot extends AbilityBot {
 
     private final YandexTranslator translator = new YandexTranslator();
     private final TranslateScenario translateScenario = new TranslateScenario(translator);
-    private final DocumentScenario documentScenario = new DocumentScenario();
+    private final DocumentScenario documentScenario = new DocumentScenario(translator);
     private final TrainingScenario trainingScenario = new TrainingScenario(translator);
     private final List<Scenario> scenarios = Arrays.asList(translateScenario, documentScenario, trainingScenario);
 
     private final String TRANSLATE_ERROR = "Не удалось перевести слово";
 
     private final String TRAINING_ERROR = "Ошибка тренировки";
+
+    private final String NO_DOCUMENT_ERROR = "Это не документ:)";
+    private final String DOCUMENT_ERROR = "Ошибка документа";
 
     private static final String START_MESSAGE = """
             Привет!\s
@@ -83,6 +92,20 @@ public class MainBot extends AbilityBot {
 
         try {
             execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendDocument(String chatId, String documentPath) { //Отправляем сообщения
+        SendDocument sendDocumentRequest = new SendDocument();
+        sendDocumentRequest.setChatId(chatId);
+        File file = new File(documentPath);
+        sendDocumentRequest.setDocument(new InputFile(file));
+        sendDocumentRequest.setCaption("Переведенный документ: ");
+
+        try {
+            execute(sendDocumentRequest);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -231,6 +254,127 @@ public class MainBot extends AbilityBot {
                     }
                 })
                 .next(checkFlow)
+                .build();
+
+    }
+
+    @SuppressWarnings("unused")
+    public ReplyFlow documentFlow() {
+        ReplyFlow ruReplay = ReplyFlow.builder(db)
+                .onlyIf(update -> !update.getMessage().isCommand()
+                        && !Objects.equals(update.getMessage().getText(), "\uD83C\uDDF7\uD83C\uDDFA"))
+                .action((baseAbilityBot, upd) -> {
+                            String answer = null;
+                            try {
+                                if (upd.getMessage().hasDocument()) {
+                                    String doc_id = upd.getMessage().getDocument().getFileId();
+                                    String doc_name = upd.getMessage().getDocument().getFileName();
+                                    String doc_mine = upd.getMessage().getDocument().getMimeType();
+                                    long doc_size = upd.getMessage().getDocument().getFileSize();
+                                    String getID = String.valueOf(upd.getMessage().getFrom().getId());
+
+                                    Document document = new Document();
+                                    document.setMimeType(doc_mine);
+                                    document.setFileName(doc_name);
+                                    document.setFileSize(doc_size);
+                                    document.setFileId(doc_id);
+
+                                    GetFile getFile = new GetFile();
+                                    getFile.setFileId(document.getFileId());
+                                    try {
+                                          org.telegram.telegrambots.meta.api.objects.File file = execute(getFile);
+                                          String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
+                                          downloadFile(file, new File(documentPath));
+                                          sendDocument(String.valueOf(getChatId(upd)),
+                                                  documentScenario.execute(new DocumentData(documentPath, new RussianLanguage(), new EnglishLanguage())));
+                                          return;
+                                    } catch (TelegramApiException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    answer = NO_DOCUMENT_ERROR;
+                                }
+
+                            } catch (Exception e) {
+                                answer = DOCUMENT_ERROR;
+                            }
+                            sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
+                        }
+                )
+                .build();
+
+        ReplyFlow ruReplayFlow = ReplyFlow.builder(db)
+                .action((baseAbilityBot, upd) -> sendMessage(
+                        String.valueOf(getChatId(upd)), "Пришлите документ",
+                        new ArrayList<>()
+                ))
+                .onlyIf(hasMessageWith(TranslateScenario.RUSSIAN_FLAG))
+                .next(ruReplay)
+                .build();
+
+
+        ReplyFlow enReplay = ReplyFlow.builder(db)
+                .onlyIf(update -> !update.getMessage().isCommand()
+                        && !Objects.equals(update.getMessage().getText(), TranslateScenario.BRITISH_FLAG))
+                .action((baseAbilityBot, upd) -> {
+                            String answer = null;
+                            try {
+                                if (upd.getMessage().hasDocument()) {
+                                    String doc_id = upd.getMessage().getDocument().getFileId();
+                                    String doc_name = upd.getMessage().getDocument().getFileName();
+                                    String doc_mine = upd.getMessage().getDocument().getMimeType();
+                                    long doc_size = upd.getMessage().getDocument().getFileSize();
+                                    String getID = String.valueOf(upd.getMessage().getFrom().getId());
+
+                                    Document document = new Document();
+                                    document.setMimeType(doc_mine);
+                                    document.setFileName(doc_name);
+                                    document.setFileSize(doc_size);
+                                    document.setFileId(doc_id);
+
+                                    GetFile getFile = new GetFile();
+                                    getFile.setFileId(document.getFileId());
+                                    try {
+                                        org.telegram.telegrambots.meta.api.objects.File file = execute(getFile);
+                                        String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
+                                        downloadFile(file, new File(documentPath));
+                                        sendDocument(String.valueOf(getChatId(upd)),
+
+                                                documentScenario.execute(new DocumentData(documentPath, new EnglishLanguage(), new RussianLanguage())));
+                                        return;
+                                    } catch (TelegramApiException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    answer = NO_DOCUMENT_ERROR;
+                                }
+
+                            } catch (Exception e) {
+                                answer = DOCUMENT_ERROR;
+                            }
+                            sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
+                        }
+                )
+                //Выполнить экшн если это не команда и не флаг
+                .build();
+
+        ReplyFlow enReplayFlow = ReplyFlow.builder(db)
+                .onlyIf(hasMessageWith(TranslateScenario.BRITISH_FLAG))
+                .action((baseAbilityBot, upd) -> sendMessage(
+                        String.valueOf(getChatId(upd)), "Пришлите документ",
+                        List.of()
+                ))
+                .next(enReplay)
+                .build();
+
+        return ReplyFlow.builder(db)
+                .onlyIf(hasMessageWith(documentScenario.getName()).or(hasMessageWith("/document")))
+                .action((baseAbilityBot, upd) -> sendMessage(
+                        String.valueOf(getChatId(upd)), "Выберите язык исходного текста",
+                        new ArrayList<>(Arrays.asList(TranslateScenario.RUSSIAN_FLAG, TranslateScenario.BRITISH_FLAG))
+                ))
+                .next(enReplayFlow)
+                .next(ruReplayFlow)
                 .build();
 
     }
