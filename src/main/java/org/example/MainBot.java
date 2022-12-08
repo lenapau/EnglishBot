@@ -16,10 +16,7 @@ import scenario.document.DocumentData;
 import scenario.training.InputTrainingData;
 import scenario.training.OutputTrainingData;
 import scenario.training.TrainingState;
-import scenario.translate.EnglishLanguage;
-import scenario.translate.RussianLanguage;
-import scenario.translate.TranslateData;
-import scenario.translate.YandexTranslator;
+import scenario.translate.*;
 
 import javax.validation.constraints.NotNull;
 import java.io.File;
@@ -264,43 +261,7 @@ public class MainBot extends AbilityBot {
                 .onlyIf(update -> !update.getMessage().isCommand()
                         && !Objects.equals(update.getMessage().getText(), "\uD83C\uDDF7\uD83C\uDDFA"))
                 .action((baseAbilityBot, upd) -> {
-                            String answer = null;
-                            try {
-                                if (upd.getMessage().hasDocument()) {
-                                    String doc_id = upd.getMessage().getDocument().getFileId();
-                                    String doc_name = upd.getMessage().getDocument().getFileName();
-                                    String doc_mine = upd.getMessage().getDocument().getMimeType();
-                                    long doc_size = upd.getMessage().getDocument().getFileSize();
-                                    String getID = String.valueOf(upd.getMessage().getFrom().getId());
-
-                                    Document document = new Document();
-                                    document.setMimeType(doc_mine);
-                                    document.setFileName(doc_name);
-                                    document.setFileSize(doc_size);
-                                    document.setFileId(doc_id);
-
-                                    GetFile getFile = new GetFile();
-                                    getFile.setFileId(document.getFileId());
-                                    try {
-                                        org.telegram.telegrambots.meta.api.objects.File telegramFile = execute(getFile);
-                                        String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
-                                        File file = new File(documentPath);
-                                        downloadFile(telegramFile, file);
-                                        sendDocument(String.valueOf(getChatId(upd)),
-                                                documentScenario.execute(new DocumentData(doc_name, documentPath, new RussianLanguage(), new EnglishLanguage())));
-                                        file.delete();
-                                        return;
-                                    } catch (TelegramApiException e) {
-                                        e.printStackTrace();
-                                    }
-                                } else {
-                                    answer = NO_DOCUMENT_ERROR;
-                                }
-
-                            } catch (Exception e) {
-                                answer = DOCUMENT_ERROR;
-                            }
-                            sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
+                    handleDocument(upd, new RussianLanguage(), new EnglishLanguage());
                         }
                 )
                 .build();
@@ -319,43 +280,7 @@ public class MainBot extends AbilityBot {
                 .onlyIf(update -> !update.getMessage().isCommand()
                         && !Objects.equals(update.getMessage().getText(), TranslateScenario.BRITISH_FLAG))
                 .action((baseAbilityBot, upd) -> {
-                            String answer = null;
-                            try {
-                                if (upd.getMessage().hasDocument()) {
-                                    String doc_id = upd.getMessage().getDocument().getFileId();
-                                    String doc_name = upd.getMessage().getDocument().getFileName();
-                                    String doc_mine = upd.getMessage().getDocument().getMimeType();
-                                    long doc_size = upd.getMessage().getDocument().getFileSize();
-                                    String getID = String.valueOf(upd.getMessage().getFrom().getId());
-
-                                    Document document = new Document();
-                                    document.setMimeType(doc_mine);
-                                    document.setFileName(doc_name);
-                                    document.setFileSize(doc_size);
-                                    document.setFileId(doc_id);
-
-                                    GetFile getFile = new GetFile();
-                                    getFile.setFileId(document.getFileId());
-                                    try {
-                                        org.telegram.telegrambots.meta.api.objects.File telegramFile = execute(getFile);
-                                        String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
-                                        File file = new File(documentPath);
-                                        downloadFile(telegramFile, file);
-                                        sendDocument(String.valueOf(getChatId(upd)),
-                                                documentScenario.execute(new DocumentData(doc_name, documentPath, new EnglishLanguage(), new RussianLanguage())));
-                                        file.delete();
-                                        return;
-                                    } catch (TelegramApiException e) {
-                                        e.printStackTrace();
-                                    }
-                                } else {
-                                    answer = NO_DOCUMENT_ERROR;
-                                }
-
-                            } catch (Exception e) {
-                                answer = DOCUMENT_ERROR;
-                            }
-                            sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
+                            handleDocument(upd, new EnglishLanguage(), new RussianLanguage());
                         }
                 )
                 //Выполнить экшн если это не команда и не флаг
@@ -380,6 +305,50 @@ public class MainBot extends AbilityBot {
                 .next(ruReplayFlow)
                 .build();
 
+    }
+
+    void handleDocument(Update upd, Language fromLanguage, Language toLanguage) {
+        String answer = null;
+        try {
+            if (upd.getMessage().hasDocument()) {
+                String doc_id = upd.getMessage().getDocument().getFileId();
+                String doc_name = upd.getMessage().getDocument().getFileName();
+                String doc_mine = upd.getMessage().getDocument().getMimeType();
+                long doc_size = upd.getMessage().getDocument().getFileSize();
+                String getID = String.valueOf(upd.getMessage().getFrom().getId());
+
+                Document document = new Document();
+                document.setMimeType(doc_mine);
+                document.setFileName(doc_name);
+                document.setFileSize(doc_size);
+                document.setFileId(doc_id);
+
+                GetFile getFile = new GetFile();
+                getFile.setFileId(document.getFileId());
+                try {
+                    org.telegram.telegrambots.meta.api.objects.File telegramFile = execute(getFile);
+                    String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
+                    File file = new File(documentPath);
+                    downloadFile(telegramFile, file);
+                    String translatedFilePath = documentScenario.execute(new DocumentData(doc_name, documentPath, fromLanguage, toLanguage));
+                    File translatedFile = new File(translatedFilePath);
+
+                    sendDocument(String.valueOf(getChatId(upd)), translatedFilePath);
+                    file.delete();
+                    translatedFile.delete();
+                    return;
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                answer = NO_DOCUMENT_ERROR;
+            }
+
+        } catch (Exception e) {
+            answer = DOCUMENT_ERROR;
+            e.printStackTrace();
+        }
+        sendMessage(String.valueOf(getChatId(upd)), answer, getScenarioButtons());
     }
 
     @Override
