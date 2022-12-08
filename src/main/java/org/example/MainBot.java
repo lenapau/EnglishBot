@@ -284,11 +284,13 @@ public class MainBot extends AbilityBot {
                                     try {
                                         org.telegram.telegrambots.meta.api.objects.File telegramFile = execute(getFile);
                                         String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
+                                        String translatedFilePath = documentScenario.execute(new DocumentData(doc_name, documentPath, new RussianLanguage(), new EnglishLanguage()));
+                                        File translatedFile = new File(translatedFilePath);
                                         File file = new File(documentPath);
                                         downloadFile(telegramFile, file);
-                                        sendDocument(String.valueOf(getChatId(upd)),
-                                                documentScenario.execute(new DocumentData(doc_name, documentPath, new RussianLanguage(), new EnglishLanguage())));
+                                        sendDocument(String.valueOf(getChatId(upd)), translatedFilePath);
                                         file.delete();
+                                        translatedFile.delete();
                                         return;
                                     } catch (TelegramApiException e) {
                                         e.printStackTrace();
@@ -341,9 +343,12 @@ public class MainBot extends AbilityBot {
                                         String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
                                         File file = new File(documentPath);
                                         downloadFile(telegramFile, file);
-                                        sendDocument(String.valueOf(getChatId(upd)),
-                                                documentScenario.execute(new DocumentData(doc_name, documentPath, new EnglishLanguage(), new RussianLanguage())));
+                                        String translatedFilePath = documentScenario.execute(new DocumentData(doc_name, documentPath, new EnglishLanguage(), new RussianLanguage()));
+                                        File translatedFile = new File(translatedFilePath);
+
+                                        sendDocument(String.valueOf(getChatId(upd)), translatedFilePath);
                                         file.delete();
+                                        translatedFile.delete();
                                         return;
                                     } catch (TelegramApiException e) {
                                         e.printStackTrace();
