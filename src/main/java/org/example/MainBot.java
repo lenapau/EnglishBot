@@ -282,12 +282,14 @@ public class MainBot extends AbilityBot {
                                     GetFile getFile = new GetFile();
                                     getFile.setFileId(document.getFileId());
                                     try {
-                                          org.telegram.telegrambots.meta.api.objects.File file = execute(getFile);
-                                          String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
-                                          downloadFile(file, new File(documentPath));
-                                          sendDocument(String.valueOf(getChatId(upd)),
-                                                  documentScenario.execute(new DocumentData(doc_name, documentPath, new RussianLanguage(), new EnglishLanguage())));
-                                          return;
+                                        org.telegram.telegrambots.meta.api.objects.File telegramFile = execute(getFile);
+                                        String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
+                                        File file = new File(documentPath);
+                                        downloadFile(telegramFile, file);
+                                        sendDocument(String.valueOf(getChatId(upd)),
+                                                documentScenario.execute(new DocumentData(doc_name, documentPath, new RussianLanguage(), new EnglishLanguage())));
+                                        file.delete();
+                                        return;
                                     } catch (TelegramApiException e) {
                                         e.printStackTrace();
                                     }
@@ -335,12 +337,13 @@ public class MainBot extends AbilityBot {
                                     GetFile getFile = new GetFile();
                                     getFile.setFileId(document.getFileId());
                                     try {
-                                        org.telegram.telegrambots.meta.api.objects.File file = execute(getFile);
+                                        org.telegram.telegrambots.meta.api.objects.File telegramFile = execute(getFile);
                                         String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
-                                        downloadFile(file, new File(documentPath));
+                                        File file = new File(documentPath);
+                                        downloadFile(telegramFile, file);
                                         sendDocument(String.valueOf(getChatId(upd)),
-
                                                 documentScenario.execute(new DocumentData(doc_name, documentPath, new EnglishLanguage(), new RussianLanguage())));
+                                        file.delete();
                                         return;
                                     } catch (TelegramApiException e) {
                                         e.printStackTrace();
