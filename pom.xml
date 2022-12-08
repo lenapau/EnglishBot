@@ -16,6 +16,14 @@
     <maven.compiler.target>19</maven.compiler.target>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>AsposeJavaAPI</id>
+      <name>Aspose Java API</name>
+      <url>https://releases.aspose.com/java/repo/</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -47,6 +55,18 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>23.6-jre</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aspose</groupId>
+      <artifactId>aspose-words</artifactId>
+      <version>22.11</version>
+      <classifier>jdk17</classifier>
+    </dependency>
+    <dependency>
+      <groupId>com.aspose</groupId>
+      <artifactId>aspose-words</artifactId>
+      <version>22.11</version>
+      <classifier>javadoc</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
