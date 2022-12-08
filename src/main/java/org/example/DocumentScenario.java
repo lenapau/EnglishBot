@@ -2,11 +2,14 @@ package org.example;
 
 import com.aspose.words.Document;
 import com.aspose.words.DocumentBuilder;
+import com.aspose.words.Font;
+import com.aspose.words.Underline;
 import scenario.document.DocumentData;
 import scenario.translate.EnglishLanguage;
 import scenario.translate.RussianLanguage;
 import scenario.translate.YandexTranslator;
 
+import java.awt.*;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,17 +34,16 @@ public class DocumentScenario implements Scenario<DocumentData, String> {
         Document document = new Document(documentData.documentPath());
         String documentText = document.getText();
         String translatedDocumentText = translator.translate(documentData.fromLanguage(), documentData.toLanguage(), documentText);
-        document.cleanup();
+        document.removeAllChildren();
         // Inisialize a DocumentBuilder
         DocumentBuilder builder = new DocumentBuilder(document);
-        // Insert text to the document A start
 
         builder.moveToDocumentStart();
         builder.write(translatedDocumentText);
 
         File documentFile = new File(documentData.documentPath());
         String translatedFilePath = documentFile.getParentFile().getAbsolutePath();
-        Path filePath = Paths.get(translatedFilePath,  "translating_" + documentFile.getName());
+        Path filePath = Paths.get(translatedFilePath,  "translated_" + documentData.documentName());
         document.save(filePath.toString());
 
         return filePath.toString();

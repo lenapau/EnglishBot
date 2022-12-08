@@ -286,7 +286,7 @@ public class MainBot extends AbilityBot {
                                           String documentPath = "./data/userDoc/" + getID + "_" + doc_name;
                                           downloadFile(file, new File(documentPath));
                                           sendDocument(String.valueOf(getChatId(upd)),
-                                                  documentScenario.execute(new DocumentData(documentPath, new RussianLanguage(), new EnglishLanguage())));
+                                                  documentScenario.execute(new DocumentData(doc_name, documentPath, new RussianLanguage(), new EnglishLanguage())));
                                           return;
                                     } catch (TelegramApiException e) {
                                         e.printStackTrace();
@@ -340,7 +340,7 @@ public class MainBot extends AbilityBot {
                                         downloadFile(file, new File(documentPath));
                                         sendDocument(String.valueOf(getChatId(upd)),
 
-                                                documentScenario.execute(new DocumentData(documentPath, new EnglishLanguage(), new RussianLanguage())));
+                                                documentScenario.execute(new DocumentData(doc_name, documentPath, new EnglishLanguage(), new RussianLanguage())));
                                         return;
                                     } catch (TelegramApiException e) {
                                         e.printStackTrace();
