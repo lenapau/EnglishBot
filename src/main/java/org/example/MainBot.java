@@ -1,6 +1,7 @@
 package org.example;
 
 import org.telegram.abilitybots.api.bot.AbilityBot;
+import org.telegram.abilitybots.api.bot.BaseAbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
 import org.telegram.abilitybots.api.objects.ReplyFlow;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
 import static org.telegram.abilitybots.api.objects.Locality.ALL;
@@ -37,7 +39,7 @@ public class MainBot extends AbilityBot {
     private final TranslateScenario translateScenario = new TranslateScenario(translator);
     private final DocumentScenario documentScenario = new DocumentScenario(translator);
     private final TrainingScenario trainingScenario = new TrainingScenario(translator);
-    private final List<Scenario> scenarios = Arrays.asList(translateScenario, documentScenario, trainingScenario);
+    private final List<Scenario> scenarios = List.of(translateScenario, documentScenario, trainingScenario);
 
     private final String TRANSLATE_ERROR = "Не удалось перевести слово";
 
@@ -261,7 +263,7 @@ public class MainBot extends AbilityBot {
                 .onlyIf(update -> !update.getMessage().isCommand()
                         && !Objects.equals(update.getMessage().getText(), "\uD83C\uDDF7\uD83C\uDDFA"))
                 .action((baseAbilityBot, upd) -> {
-                    handleDocument(upd, new RussianLanguage(), new EnglishLanguage());
+                            handleDocument(upd, new RussianLanguage(), new EnglishLanguage());
                         }
                 )
                 .build();
@@ -310,7 +312,9 @@ public class MainBot extends AbilityBot {
     void handleDocument(Update upd, Language fromLanguage, Language toLanguage) {
         String answer = null;
         try {
-            if (upd.getMessage().hasDocument()) {
+            if (!upd.getMessage().hasDocument()) {
+                answer = NO_DOCUMENT_ERROR;
+            }
                 String doc_id = upd.getMessage().getDocument().getFileId();
                 String doc_name = upd.getMessage().getDocument().getFileName();
                 String doc_mine = upd.getMessage().getDocument().getMimeType();
@@ -340,9 +344,6 @@ public class MainBot extends AbilityBot {
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
-            } else {
-                answer = NO_DOCUMENT_ERROR;
-            }
 
         } catch (Exception e) {
             answer = DOCUMENT_ERROR;
